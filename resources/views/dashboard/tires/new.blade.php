@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-
+ {{-- <testing></testing> --}}
     <div class="col-6">
         <div class="card">
             <div class="card-header">
