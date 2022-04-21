@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tire extends Model
 {
+    use HasFactory;
+
     protected $table = 'tires';
 
     public static function stock()
@@ -24,8 +26,18 @@ class Tire extends Model
         return $this->pattern->brand;
     }
 
+    public function category()
+    {
+        return $this->pattern->category;
+    }
+
     public function dimension()
     {
         return $this->width . '/' . $this->height . 'R' . $this->diameter;
+    }
+
+    public function season()
+    {
+        return $this->belongsTo(Season::class);
     }
 }

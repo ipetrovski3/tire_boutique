@@ -260,6 +260,10 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
+          'text' => 'Шари',
+          'route' => 'create.pattern'
+        ],
+        [
             'text' => 'Залиха',
             'route'  => 'tires.index',
             'icon' => 'fas fa-database',

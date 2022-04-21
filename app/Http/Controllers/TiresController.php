@@ -18,7 +18,7 @@ use function PHPUnit\Framework\isNull;
 class TiresController extends Controller
 {
     public function index(Request $request)
-    {   
+    {
         $seasons = Season::all();
         $location = $request->location;
         $season = $request->season;
@@ -74,6 +74,7 @@ class TiresController extends Controller
         $tire->height = $request->height;
         $tire->diameter = $request->diameter;
         $tire->price = $request->price;
+        $tire->season_id = $tire->pattern->season_id;
 
         $tire->location = intval($request->width . $request->height . $request->diameter);
         // return $tire;
@@ -83,7 +84,7 @@ class TiresController extends Controller
     }
 
     public function get_season(Request $request)
-    {   
+    {
 
         $brand = Brand::findOrFail($request->brand_id);
         return response()->json($brand->patterns);

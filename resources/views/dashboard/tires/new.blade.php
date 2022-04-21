@@ -3,18 +3,13 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Dashboard</h1>
-@stop
-
-@section('content')
-
-    <div class="col-6">
+    <div class="col-8">
         <div class="card">
             <div class="card-header">
                 <h3>Нова Гума</h3>
             </div>
-            <div class="card-body">
-                <form action={{ route('tires.store') }} method="POST">
+            <form action={{ route('tires.store') }} method="POST">
+                <div class="card-body">
                     @csrf
                     <div class="row mb-3">
                         <div class="col-6">
@@ -53,54 +48,114 @@
                             </select>
                         </div>
                     </div>
-                    <h5>Димензија</h5>
-                    <div class="row mb-3" hidden id="dimensions">
-                        <div class="col-4">
-                            <label for="width">Ширина</label>
-                            <select name="width" id="witdh" class="selectpicker" data-live-search="true">
-                                @foreach ($widths as $width)
-                                    <option value="{{ $width->width }}">{{ $width->width }}
-                                    </option>
-                                @endforeach
-                            </select>
+                    <div id="dimensions" hidden>
+                        <h5>Димензија</h5>
+                        <div class="row mb-3">
+                            <div class="col-2">
+                                <label for="width">Ш</label>
+                                <select name="width" id="witdh" class="selectpicker" data-live-search="true">
+                                    @foreach ($widths as $width)
+                                        <option value="{{ $width->width }}">{{ $width->width }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-2">
+                                <label for="height">В</label>
+                                <select name="height" id="height" class="selectpicker" data-live-search="true">
+                                    @foreach ($heights as $height)
+                                        <option value="{{ $height->height }}">{{ $height->height }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-2">
+                                <label for="diameter">Д</label>
+                                <select name="diameter" id="diameter" class="selectpicker" data-live-search="true">
+                                    @foreach ($diameters as $diameter)
+                                        <option value="{{ $diameter->diameter }}">{{ $diameter->diameter }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-2">
+                                <label for="load_index">T</label>
+                                <select name="load_index" id="load_index" class="selectpicker" data-live-search="true">
+                                    @foreach (Helpers::load_indexes() as $index)
+                                        <option value="{{ $index }}">{{ $index }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-2">
+                                <label for="speed_index">Б</label>
+                                <select name="speed_index" id="speed_index" class="selectpicker" data-live-search="true">
+                                    @php
+                                     $speed_indexes = ['L', 'M', 'N', 'Q', 'R', 'S', 'T', 'U', 'H', 'V', 'Z', 'W', 'Y']
+                                    @endphp
+                                    @foreach ($speed_indexes as $index)
+                                        <option value="{{ $index }}">{{ $index }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
-                        <div class="col-4">
-                            <label for="height">Висина</label>
-                            <select name="height" id="height" class="selectpicker" data-live-search="true">
-                                @foreach ($heights as $height)
-                                    <option value="{{ $height->height }}">{{ $height->height }}
-                                    </option>
-                                @endforeach
-                            </select>
+                        <div class="row mb-3">
+                            <div class="col-4">
+                                <label title="Потрошувачка" for="width"><img src="{{ asset('images/labels/fuel.png') }}" style="max-height: 30px" alt=""></label>
+                                <select name="width" id="witdh" class="selectpicker" data-live-search="true">
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="E">E</option>
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <label title="Мокро" for="wet"><img src="{{ asset('images/labels/wet.png') }}" style="max-height: 30px" alt=""></label>
+                                <select name="wet" id="wet" class="selectpicker" data-live-search="true">
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="E">E</option>
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <label title="Бучност" for="noice"><img src="{{ asset('images/labels/noice_one.png') }}" style="max-height: 30px" alt=""></label>
+                                <select name="noice" id="noice" class="selectpicker" data-live-search="true">
+                                    @for($i=65; $i<75; $i++)
+                                        <option value="{{ $i }}">{{ $i }}</option>
+                                    @endfor
+                                </select>
+                            </div>
                         </div>
-                        <div class="col-4">
-                            <label for="diameter">Диаметар</label>
-                            <select name="diameter" id="diameter" class="selectpicker" data-live-search="true">
-                                @foreach ($diameters as $diameter)
-                                    <option value="{{ $diameter->diameter }}">{{ $diameter->diameter }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-            </div>
-            <div class="col-12 mb-2">
-                <label for="price">Цена</label>
-                <input type="number" class="form-control" name="price" id="price">
-            </div>
 
-            <div class="col-12 mb-2">
-                <button type="submit" class="p-auto btn btn-block btn-success"><i class="fas fa-save"></i>
-                    Внеси гума</button>
-            </div>
+                    </div>
+                </div>
+                <div class="col-12 mb-2">
+                    <label for="price">Цена</label>
+                    <input type="number" class="form-control" name="price" id="price">
+                </div>
+
+                <div class="col-12 mb-2">
+                    <button type="submit" class="p-auto btn btn-block btn-success"><i class="fas fa-save"></i>
+                        Внеси гума
+                    </button>
+                </div>
+            </form>
         </div>
-        </form>
     </div>
+@stop
+
+@section('content')
+
+    <h1>Dashboard</h1>
     </div>
 @stop
 
 @section('css')
-    {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
+
     <link href="{{ asset('css/bootstrap-select.min.css') }}" rel="stylesheet">
 
 @stop

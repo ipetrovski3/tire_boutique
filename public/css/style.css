@@ -5,6 +5,7 @@ body {
   font-family: "Muli", sans-serif;
 }
 
+
 p, li, input, select, button {
   font-family: "Muli", sans-serif;
   color: #666;
@@ -927,7 +928,6 @@ ul.pagination .active a {
 }
 
 .hero-area .advance-search button {
-  display: block;
 }
 
 @media (max-width: 480px) {

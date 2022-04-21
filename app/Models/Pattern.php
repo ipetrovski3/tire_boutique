@@ -9,6 +9,8 @@ class Pattern extends Model
 {
     protected $table = 'patterns';
 
+    protected $guarded = [];
+
     public function season()
     {
         return $this->belongsTo(Season::class);

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InvoicesController;
+use App\Http\Controllers\PatternsController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\TiresController;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +21,10 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [PublicController::class, 'index'])->name('homepage');
+Route::post('/search', [PublicController::class, 'search'])->name('search.results');
+Route::post('/filter', [PublicController::class, 'filter'])->name('filter.results');
+Route::get('/brands/{brand}/tires/{id}', [PublicController::class, 'show_tire'])->name('show_tire');
+Route::post('/add_to_cart', [PublicController::class, 'add_to_cart'])->name('add_to_cart');
 
 Route::prefix('dashboard')->middleware('auth')->group(function(){
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
@@ -34,5 +39,10 @@ Route::prefix('dashboard')->middleware('auth')->group(function(){
     Route::prefix('invoices')->group(function() {
         Route::get('/new', [InvoicesController::class, 'new'])->name('invoices.new');
         Route::post('/store', [InvoicesController::class, 'store'])->name('invoices.store');
+    });
+
+    Route::prefix('patterns')->group(function() {
+        Route::get('/create', [PatternsController::class, 'create'])->name('create.pattern');
+        Route::post('/store', [PatternsController::class, 'store'])->name('store.pattern');
     });
 });

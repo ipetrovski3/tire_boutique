@@ -9,7 +9,7 @@ class Brand extends Model
 {
     protected $table = 'brands';
 
-    public function patterns() 
+    public function patterns()
     {
         return $this->hasMany(Pattern::class);
     }

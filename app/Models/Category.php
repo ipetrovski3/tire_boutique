@@ -16,7 +16,7 @@ class Category extends Model
 
     public function tires()
     {
-        return $this->hasManyThrough(Tire::class, Brand::class);
+        return $this->hasManyThrough(Tire::class, Pattern::class);
     }
 
     public function to_mk($category)

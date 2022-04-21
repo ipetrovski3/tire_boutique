@@ -7,9 +7,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Tire Boutique</title>
-  
+
   <!-- FAVICON -->
   <link href="img/favicon.png" rel="shortcut icon">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
   <!-- PLUGINS CSS STYLE -->
   <!-- <link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet"> -->
   <!-- Bootstrap -->
@@ -24,8 +25,9 @@
   <link href="{{ asset('css/plugins/jquery.fancybox.pack.css') }}" rel="stylesheet">
   <link href="{{ asset('css/plugins/nice-select.css') }}" rel="stylesheet">
   <link href="{{ asset('css/bootstrap-select.min.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="{{ asset('css/select2.css') }}">
   <!-- CUSTOM CSS -->
-  <link href="css/style.css" rel="stylesheet">
+  <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -100,13 +102,14 @@
 							</li>
 						</ul>
 						<ul class="navbar-nav ml-auto mt-10">
-							<li class="nav-item">
-								<a class="nav-link login-button" href="login.html">Login</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link text-white add-button" href="ad-listing.html"><i class="fa fa-plus-circle"></i> Add Listing</a>
-							</li>
-						</ul>
+
+                            <a href="#">
+                                <i class="fa fa-shopping-bag"></i>
+                                <span id="cart_count" class="badge">0</span>
+                                <p>КОШНИЧКА</p>
+                            </a>
+
+                        </ul>
 					</div>
 				</nav>
 			</div>
@@ -185,21 +188,21 @@
         </div>
       </div>
       <!-- Promotion -->
-      <div class="col-lg-4 col-md-7">
-        <!-- App promotion -->
-        <div class="block-2 app-promotion">
-          <div class="mobile d-flex">
-            <a href="">
-              <!-- Icon -->
-              <img src="images/footer/phone-icon.png" alt="mobile-icon">
-            </a>
-            <p>Get the Dealsy Mobile App and Save more</p>
-          </div>
-          <div class="download-btn d-flex my-3">
-            <a href="#"><img src="images/apps/google-play-store.png" class="img-fluid" alt=""></a>
-            <a href="#" class=" ml-3"><img src="images/apps/apple-app-store.png" class="img-fluid" alt=""></a>
-          </div>
-        </div>
+{{--      <div class="col-lg-4 col-md-7">--}}
+{{--        <!-- App promotion -->--}}
+{{--        <div class="block-2 app-promotion">--}}
+{{--          <div class="mobile d-flex">--}}
+{{--            <a href="">--}}
+{{--              <!-- Icon -->--}}
+{{--              <img src="images/footer/phone-icon.png" alt="mobile-icon">--}}
+{{--            </a>--}}
+{{--            <p>Get the Dealsy Mobile App and Save more</p>--}}
+{{--          </div>--}}
+{{--          <div class="download-btn d-flex my-3">--}}
+{{--            <a href="#"><img src="images/apps/google-play-store.png" class="img-fluid" alt=""></a>--}}
+{{--            <a href="#" class=" ml-3"><img src="images/apps/apple-app-store.png" class="img-fluid" alt=""></a>--}}
+{{--          </div>--}}
+{{--        </div>--}}
       </div>
     </div>
   </div>
@@ -216,7 +219,7 @@
           <p>Copyright © <script>
               var CurrentYear = new Date().getFullYear()
               document.write(CurrentYear)
-            </script>. All Rights Reserved, theme by <a class="text-primary" href="https://themefisher.com" target="_blank">themefisher.com</a></p>
+            </script>. All Rights Reserved, by <a class="text-primary" href="https://themefisher.com" target="_blank">ipetrovski</a></p>
         </div>
       </div>
       <div class="col-sm-6 col-12">
@@ -254,6 +257,9 @@
 <script src="/google-map/gmap.js"></script> --}}
 <script src="{{ asset('js/script.js') }}"></script>
 <script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
+<script src="{{ asset('js/select2.full.min.js') }}"></script>
+
+@yield('js')
 
 
 </body>
