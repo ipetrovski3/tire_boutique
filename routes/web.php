@@ -39,6 +39,11 @@ Route::prefix('dashboard')->middleware('auth')->group(function(){
     Route::prefix('invoices')->group(function() {
         Route::get('/new', [InvoicesController::class, 'new'])->name('invoices.new');
         Route::post('/store', [InvoicesController::class, 'store'])->name('invoices.store');
+        Route::post('remove-article', [InvoicesController::class, 'remove_article'])->name('remove.article');
+        Route::post('/select-company', [InvoicesController::class, 'select_company'])->name('select.company');
+        Route::post('/select-product', [InvoicesController::class, 'select_product'])->name('select.product');
+        Route::post('/invoiced-product', [InvoicesController::class, 'invoiced_product'])->name('invoiced.product');
+
     });
 
     Route::prefix('patterns')->group(function() {

@@ -5,7 +5,9 @@ namespace Database\Seeders;
 use App\Models\Tire;
 use Illuminate\Database\Seeder;
 
-class TiresSeeder extends Seeder
+class
+
+TiresSeeder extends Seeder
 {
     /**
      * Run the database seeds.

@@ -29,7 +29,9 @@ class TireFactory extends Factory
             'diameter' => $r,
             'season_id' => Season::all()->random()->season,
             'location' => intval('width' . 'height' . 'diameter'),
-            'price' => rand(2000, 30000)
+            'price' => rand(2000, 30000),
+            'main_category_id' => 1,
+            'code' => rand(1, 100)
             //
         ];
     }

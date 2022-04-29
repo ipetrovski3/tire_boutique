@@ -9,11 +9,17 @@ class Tire extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['code'];
     protected $table = 'tires';
 
     public static function stock()
     {
         return Tire::where('stock', '>', 0);
+    }
+
+    public function main_category()
+    {
+        return $this->belongsTo(MainCategory::class);
     }
 
     public function pattern()
@@ -39,5 +45,20 @@ class Tire extends Model
     public function season()
     {
         return $this->belongsTo(Season::class);
+    }
+
+    public function invoices()
+    {
+        return $this->morphToMany(Invoice::class, 'invoicable');
+    }
+
+
+    public function name()
+    {
+        return $this->dimension() . ' '
+            . $this->brand()->name . ' '
+            . $this->pattern->name . ' '
+            . $this->speed_index . ' '
+            . $this->load_index;
     }
 }
